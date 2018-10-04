@@ -1,0 +1,8 @@
+﻿  Player.cpp
+c:\users\micha\documents\ai\lab2\lab1\player.cpp(13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\micha\documents\ai\lab2\lab1\player.cpp(32): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\micha\documents\ai\lab2\lab1\player.cpp(95): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\micha\documents\ai\lab2\lab1\player.cpp(104): warning C4305: '-=': truncation from 'double' to 'float'
+c:\users\micha\documents\ai\lab2\lab1\player.cpp(120): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\micha\documents\ai\lab2\lab1\player.cpp(128): warning C4305: '-=': truncation from 'double' to 'float'
+  Lab1.vcxproj -> C:\Users\micha\Documents\AI\Lab2\Debug\Lab1.exe

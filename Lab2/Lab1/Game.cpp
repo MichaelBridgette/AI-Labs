@@ -1,0 +1,98 @@
+#include "Game.h"
+#include<iostream>
+
+
+Game::Game() : window(sf::VideoMode(1920, 1080), "SFML"), ent(sf::Vector2f(500,500),sf::Vector2f(0.1,0)), player(sf::Vector2f(1000, 500))
+{
+	
+}
+
+Game::~Game() {
+
+
+
+}
+
+void Game::run()
+{
+
+	initialize();
+
+	sf::Event event;
+
+	while (isRunning) {
+
+
+
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+			{
+				isRunning = false;
+			}
+		}
+		update();
+		draw();
+		time = clock.restart();
+		dt = time.asSeconds();
+	}
+
+}
+
+void Game::initialize()
+{
+	isRunning = true;
+
+
+}
+
+void Game::update()
+{
+	ent.Update(dt);
+	player.Update(dt);
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	{
+		
+		//player.increaseVelocityX();
+		player.increaseRotation();
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	{
+		//player.decreaseVelocityX();
+		player.decreaseRotation();
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	{
+		//player.increaseVelocityY();
+		//player.SetSpeed(-0.5);
+		player.DecreaseSpeed();
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	{
+		//player.decreaseVelocityY();
+		//player.SetSpeed(0.5);
+		
+		player.IncreaseSpeed();
+	}
+
+	
+
+}
+
+void Game::draw()
+{
+	window.clear(sf::Color::White);
+	ent.Draw(window);
+	player.Draw(window);
+	window.display();
+	
+	
+}
+
+void Game::unload()
+{
+}

@@ -4,7 +4,7 @@ Player::Player(sf::Vector2f pos)
 {
 	position = pos;
 	speed = 0;
-	if (!texture.loadFromFile("F5S4.png"))
+	if (!texture.loadFromFile("rsH6n.png"))
 	{
 
 	}
@@ -12,7 +12,7 @@ Player::Player(sf::Vector2f pos)
 	sprite.setPosition(pos);
 	sprite.setOrigin(sprite.getGlobalBounds().width / 1.4,sprite.getGlobalBounds().height / 2);
 	sprite.setRotation(0);
-	sprite.setScale(0.4, 0.4);
+	sprite.setScale(0.2, 0.2);
 	rotation = 0;
 	orientation = 0;
 }
@@ -59,38 +59,6 @@ void Player::Update(float dt)
 	
 }
 
-void Player::increaseVelocityX()
-{
-	if (velocity.x < 0.5)
-	{
-		velocity.x += 0.01f;
-	}
-}
-
-void Player::decreaseVelocityX()
-{
-	if (velocity.x > -0.5)
-	{
-		velocity.x -= 0.01f;
-	}
-}
-
-void Player::increaseVelocityY()
-{
-	if (velocity.y < 0.5)
-	{
-		 velocity.y+= 0.01f;
-	}
-}
-
-void Player::decreaseVelocityY()
-{
-	if (velocity.y > -0.5)
-	{
-		velocity.y -= 0.01f;
-	}
-}
-
 void Player::increaseRotation()
 {
 	rotation += 5;
@@ -133,4 +101,14 @@ void Player::DecreaseSpeed()
 sf::Vector2f Player::getPosition()
 {
 	return sprite.getPosition();
+}
+
+float Player::getSpeed()
+{
+	return speed;
+}
+
+float Player::getRotation()
+{
+	return rotation;
 }

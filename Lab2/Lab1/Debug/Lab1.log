@@ -1,7 +1,10 @@
-﻿  Player.cpp
-d:\documents\ai-labs\lab2\lab1\player.cpp(13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\documents\ai-labs\lab2\lab1\player.cpp(15): warning C4305: 'argument': truncation from 'double' to 'float'
-d:\documents\ai-labs\lab2\lab1\player.cpp(33): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\documents\ai-labs\lab2\lab1\player.cpp(121): warning C4305: '+=': truncation from 'double' to 'float'
-d:\documents\ai-labs\lab2\lab1\player.cpp(129): warning C4305: '-=': truncation from 'double' to 'float'
-  Lab1.vcxproj -> D:\Documents\AI-Labs\Lab2\Debug\Lab1.exe
+﻿  Entity.cpp
+c:\users\micha\documents\ai\ai-labs\lab2\lab1\entity.cpp(14): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\micha\documents\ai\ai-labs\lab2\lab1\entity.cpp(15): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\micha\documents\ai\ai-labs\lab2\lab1\entity.cpp(36): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\micha\documents\ai\ai-labs\lab2\lab1\entity.cpp(37): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\micha\documents\ai\ai-labs\lab2\lab1\entity.cpp(76): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\micha\documents\ai\ai-labs\lab2\lab1\entity.cpp(84): warning C4305: '-=': truncation from 'double' to 'float'
+c:\users\micha\documents\ai\ai-labs\lab2\lab1\entity.cpp(112): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\micha\documents\ai\ai-labs\lab2\lab1\entity.cpp(118): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Lab1.vcxproj -> C:\Users\micha\Documents\AI\AI-Labs\Lab2\Debug\Lab1.exe

@@ -7,24 +7,23 @@ enum State {
 	Wander,
 	Seek,
 	Arrive,
-	Flee
+	Pursue
 };
 class Entity {
 
 public:
 	Entity(sf::Vector2f pos);
 	void Draw(sf::RenderWindow &window);
-	void Update(float dt, sf::Vector2f playerPos);
-	void increaseVelocityX();
-	void decreaseVelocityX();
-	void increaseVelocityY();
-	void decreaseVelocityY();
+	void Update(float dt, sf::Vector2f playerPos, float playerSpeed, float playerRotation);
 	void HandleBoundaries();
 
 	void increaseSpeed();
 	void decreaseSpeed();
 	void increaseRotation();
 	void decreaseRotation();
+
+
+	void Seek(sf::Vector2f pos);
 
 private:
 	State state;

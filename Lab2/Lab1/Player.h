@@ -8,10 +8,6 @@ public:
 	~Player();
 	void Draw(sf::RenderWindow &window);
 	void Update(float dt);
-	void increaseVelocityX();
-	void decreaseVelocityX();
-	void increaseVelocityY();
-	void decreaseVelocityY();
 
 	void increaseRotation();
 	void decreaseRotation();
@@ -21,6 +17,8 @@ public:
 	void DecreaseSpeed();
 
 	sf::Vector2f getPosition();
+	float getSpeed();
+	float getRotation();
 private:
 	sf::Vector2f position;
 	float speed;

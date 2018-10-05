@@ -2,9 +2,9 @@
 #include<iostream>
 
 
-Game::Game() : window(sf::VideoMode(1920, 1080), "SFML"), ent(sf::Vector2f(500,500),sf::Vector2f(0.1,0)), player(sf::Vector2f(1000, 500))
+Game::Game() : window(sf::VideoMode(800, 600), "SFML"), player(sf::Vector2f(400, 500)), ent(sf::Vector2f(500, 500))
 {
-	
+	window.setFramerateLimit(60);
 }
 
 Game::~Game() {
@@ -48,9 +48,8 @@ void Game::initialize()
 
 void Game::update()
 {
-	ent.Update(dt);
+	ent.Update(dt, player.getPosition());
 	player.Update(dt);
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		

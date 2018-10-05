@@ -1,0 +1,9 @@
+﻿  Entity.cpp
+d:\documents\ai-labs\lab2\lab1\entity.h(3): fatal error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  Game.cpp
+d:\documents\ai-labs\lab2\lab1\game.h(4): fatal error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  main.cpp
+d:\documents\ai-labs\lab2\lab1\game.h(4): fatal error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  Player.cpp
+d:\documents\ai-labs\lab2\lab1\player.h(2): fatal error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  Generating Code...

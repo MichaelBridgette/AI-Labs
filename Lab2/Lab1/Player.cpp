@@ -12,6 +12,7 @@ Player::Player(sf::Vector2f pos)
 	sprite.setPosition(pos);
 	sprite.setOrigin(sprite.getGlobalBounds().width / 1.4,sprite.getGlobalBounds().height / 2);
 	sprite.setRotation(0);
+	sprite.setScale(0.4, 0.4);
 	rotation = 0;
 	orientation = 0;
 }
@@ -92,7 +93,7 @@ void Player::decreaseVelocityY()
 
 void Player::increaseRotation()
 {
-	rotation += 0.2;
+	rotation += 5;
 	if (rotation >= 360)
 	{
 		rotation = 0;
@@ -101,7 +102,7 @@ void Player::increaseRotation()
 
 void Player::decreaseRotation()
 {
-	rotation -= 0.2;
+	rotation -= 5;
 	if (rotation <= 0)
 	{
 		rotation = 359;
@@ -115,16 +116,21 @@ void Player::SetSpeed(float s)
 
 void Player::IncreaseSpeed()
 {
-	if (speed < 0.5)
+	if (speed < 5)
 	{
-		speed += 0.001;
+		speed += 0.1;
 	}
 }
 
 void Player::DecreaseSpeed()
 {
-	if (speed > -0.5)
+	if (speed > -5)
 	{
-		speed -= 0.001;
+		speed -= 0.1;
 	}
+}
+
+sf::Vector2f Player::getPosition()
+{
+	return sprite.getPosition();
 }

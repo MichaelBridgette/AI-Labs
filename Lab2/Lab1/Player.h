@@ -19,6 +19,8 @@ public:
 
 	void IncreaseSpeed();
 	void DecreaseSpeed();
+
+	sf::Vector2f getPosition();
 private:
 	sf::Vector2f position;
 	float speed;

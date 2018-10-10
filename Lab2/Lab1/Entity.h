@@ -25,8 +25,10 @@ public:
 
 	void Seek(sf::Vector2f pos);
 
+	void setState(int state);
+
 private:
-	State state;
+	State m_state;
 	sf::Vector2f position;
 	float speed;
 	float rotation;

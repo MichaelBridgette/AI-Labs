@@ -16,7 +16,7 @@ Entity::Entity(sf::Vector2f pos)
 	sprite.setRotation(0);
 	rotation = 0;
 
-	state = State::Pursue;
+	m_state = State::Pursue;
 
 }
 
@@ -27,7 +27,8 @@ void Entity::Draw(sf::RenderWindow & window)
 
 void Entity::Update(float dt, sf::Vector2f playerPos, float playerSpeed, float PlayerRotation)
 {
-	switch (state)
+	std::cout << m_state << std::endl;
+	switch (m_state)
 	{
 	case State::Seek:
 		Seek(playerPos);
@@ -117,4 +118,9 @@ void Entity::Seek(sf::Vector2f pos)
 	}
 	sprite.setPosition((sprite.getPosition().x + cos(rotation*(acos(-1) / 180))*speed), (sprite.getPosition().y + sin(rotation*(acos(-1) / 180))*speed));
 	sprite.setRotation(rotation);
+}
+
+void Entity::setState(int state)
+{
+	m_state = static_cast<State>(state);
 }

@@ -24,6 +24,7 @@ private:
 
 
 	Entity ent;
+	Entity ent2;
 	Player player;
 
 

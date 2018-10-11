@@ -14,7 +14,7 @@ class Entity {
 public:
 	Entity(sf::Vector2f pos);
 	void Draw(sf::RenderWindow &window);
-	void Update(float dt, sf::Vector2f playerPos, float playerSpeed, float playerRotation, sf::CircleShape cir);
+	void Update(float dt, sf::Vector2f playerPos, float playerSpeed, float playerRotation, sf::CircleShape cir, sf::CircleShape innerCir);
 	void HandleBoundaries();
 
 	void increaseSpeed();

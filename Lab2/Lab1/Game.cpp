@@ -6,7 +6,7 @@ Game::Game() : window(sf::VideoMode(1920, 1080), "SFML"), player(sf::Vector2f(40
 {
 	window.setFramerateLimit(60);
 	window.setVerticalSyncEnabled(true);
-	ent2.setState(1);
+	ent2.setState(2);
 }
 
 Game::~Game() {
@@ -50,8 +50,8 @@ void Game::initialize()
 
 void Game::update()
 {
-	ent.Update(dt, player.getPosition(),player.getSpeed(),player.getRotation(), player.getCircle());
-	ent2.Update(dt, player.getPosition(), player.getSpeed(), player.getRotation(), player.getCircle());
+	ent.Update(dt, player.getPosition(),player.getSpeed(),player.getRotation(), player.getCircle(), player.getInnerCircle());
+	ent2.Update(dt, player.getPosition(), player.getSpeed(), player.getRotation(), player.getCircle(), player.getInnerCircle());
 	player.Update(dt);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
@@ -88,7 +88,7 @@ void Game::update()
 void Game::draw()
 {
 	window.clear(sf::Color::Black);
-	ent.Draw(window);
+	//ent.Draw(window);
 	ent2.Draw(window);
 	player.Draw(window);
 	window.display();

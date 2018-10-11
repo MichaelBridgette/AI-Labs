@@ -10,7 +10,7 @@ Player::Player(sf::Vector2f pos)
 	}
 	sprite.setTexture(texture);
 	sprite.setPosition(pos);
-	sprite.setOrigin(sprite.getGlobalBounds().width / 1.4,sprite.getGlobalBounds().height / 2);
+	sprite.setOrigin(sprite.getGlobalBounds().width / 2,sprite.getGlobalBounds().height / 2);
 	sprite.setRotation(0);
 	sprite.setScale(0.2, 0.2);
 	rotation = 0;
@@ -24,6 +24,15 @@ Player::Player(sf::Vector2f pos)
 	m_circle.setOutlineThickness(1);
 	m_circle.setFillColor(sf::Color::Transparent);
 	m_circle.setOrigin(radius,radius);
+
+
+	innerRadius = 50;
+	m_innerCircle.setPosition(pos);
+	m_innerCircle.setRadius(innerRadius);
+	m_innerCircle.setOutlineColor(sf::Color::Red);
+	m_innerCircle.setOutlineThickness(1);
+	m_innerCircle.setFillColor(sf::Color::Transparent);
+	m_innerCircle.setOrigin(innerRadius, innerRadius);
 }
 
 Player::~Player()
@@ -34,6 +43,7 @@ void Player::Draw(sf::RenderWindow & window)
 {
 	window.draw(sprite);
 	window.draw(m_circle);
+	window.draw(m_innerCircle);
 }
 
 void Player::Update(float dt)
@@ -45,7 +55,7 @@ void Player::Update(float dt)
 	//sprite.setRotation(atan2(velocity.x, velocity.y));
 	sprite.setRotation(rotation);
 	m_circle.setPosition(sprite.getPosition());
-
+	m_innerCircle.setPosition(sprite.getPosition());
 
 	if (sprite.getPosition().x > 1920)
 	{
@@ -127,4 +137,9 @@ float Player::getRotation()
 sf::CircleShape Player::getCircle()
 {
 	return m_circle;
+}
+
+sf::CircleShape Player::getInnerCircle()
+{
+	return m_innerCircle;
 }

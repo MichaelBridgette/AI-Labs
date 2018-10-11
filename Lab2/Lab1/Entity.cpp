@@ -28,19 +28,46 @@ void Entity::Draw(sf::RenderWindow & window)
 	window.draw(sprite);
 }
 
-void Entity::Update(float dt, sf::Vector2f playerPos, float playerSpeed, float PlayerRotation, sf::CircleShape cir)
+void Entity::Update(float dt, sf::Vector2f playerPos, float playerSpeed, float PlayerRotation, sf::CircleShape cir, sf::CircleShape innerCir)
 {
 	//std::cout << m_state << std::endl;
 
-	if (sprite.getGlobalBounds().intersects(cir.getGlobalBounds()))
-	{
-		//do something
-	}
+	
 
 	switch (m_state)
 	{
 	case State::Seek:
 		Seek(playerPos);
+		break;
+
+	case State::Arrive:
+		Seek(playerPos);
+		if (sprite.getGlobalBounds().intersects(cir.getGlobalBounds()))
+		{
+			if (speed >= 1.5f)
+			{
+				decreaseSpeed();
+			}
+		}
+		else
+		{
+			increaseSpeed();
+		}
+
+		if (sprite.getGlobalBounds().intersects(innerCir.getGlobalBounds()))
+		{
+			if (speed > 0)
+			{
+				decreaseSpeed();
+			}
+			
+			if (speed < 0)
+			{
+				speed = 0;
+			}
+		}
+
+
 		break;
 	case State::Pursue:
 		float x = (playerSpeed * cos(PlayerRotation *(acos(-1) / 180)));
@@ -49,7 +76,6 @@ void Entity::Update(float dt, sf::Vector2f playerPos, float playerSpeed, float P
 		sf::Vector2f futurePos = playerPos + (vel * 60.0f);
 		Seek(futurePos);
 		break;
-
 	}
 	
 	HandleBoundaries();
@@ -81,7 +107,7 @@ void Entity::HandleBoundaries()
 
 void Entity::increaseSpeed()
 {
-	if (speed < 10)
+	if (speed < 4)
 	{
 		speed += 0.1;
 	}
@@ -89,7 +115,7 @@ void Entity::increaseSpeed()
 
 void Entity::decreaseSpeed()
 {
-	if (speed > -10)
+	if (speed > -4)
 	{
 		speed -= 0.1;
 	}

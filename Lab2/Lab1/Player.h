@@ -21,6 +21,7 @@ public:
 	float getRotation();
 
 	sf::CircleShape getCircle();
+	sf::CircleShape getInnerCircle();
 private:
 	sf::Vector2f position;
 	float speed;
@@ -32,5 +33,7 @@ private:
 	float orientation;
 
 	sf::CircleShape m_circle;
+	sf::CircleShape m_innerCircle;
 	float radius;
+	float innerRadius;
 };

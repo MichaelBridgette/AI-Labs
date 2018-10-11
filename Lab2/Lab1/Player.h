@@ -19,6 +19,8 @@ public:
 	sf::Vector2f getPosition();
 	float getSpeed();
 	float getRotation();
+
+	sf::CircleShape getCircle();
 private:
 	sf::Vector2f position;
 	float speed;
@@ -28,4 +30,7 @@ private:
 	sf::Sprite sprite;
 	float rotation;
 	float orientation;
+
+	sf::CircleShape m_circle;
+	float radius;
 };

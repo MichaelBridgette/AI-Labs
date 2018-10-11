@@ -15,6 +15,15 @@ Player::Player(sf::Vector2f pos)
 	sprite.setScale(0.2, 0.2);
 	rotation = 0;
 	orientation = 0;
+
+
+	radius = 250;
+	m_circle.setPosition(pos);
+	m_circle.setRadius(radius);
+	m_circle.setOutlineColor(sf::Color::Blue);
+	m_circle.setOutlineThickness(1);
+	m_circle.setFillColor(sf::Color::Transparent);
+	m_circle.setOrigin(radius,radius);
 }
 
 Player::~Player()
@@ -24,6 +33,7 @@ Player::~Player()
 void Player::Draw(sf::RenderWindow & window)
 {
 	window.draw(sprite);
+	window.draw(m_circle);
 }
 
 void Player::Update(float dt)
@@ -34,6 +44,7 @@ void Player::Update(float dt)
 	//orientation += rotation * dt;
 	//sprite.setRotation(atan2(velocity.x, velocity.y));
 	sprite.setRotation(rotation);
+	m_circle.setPosition(sprite.getPosition());
 
 
 	if (sprite.getPosition().x > 1920)
@@ -111,4 +122,9 @@ float Player::getSpeed()
 float Player::getRotation()
 {
 	return rotation;
+}
+
+sf::CircleShape Player::getCircle()
+{
+	return m_circle;
 }

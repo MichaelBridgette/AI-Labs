@@ -18,6 +18,9 @@ Entity::Entity(sf::Vector2f pos)
 
 	m_state = State::Pursue;
 
+
+	
+
 }
 
 void Entity::Draw(sf::RenderWindow & window)
@@ -25,9 +28,15 @@ void Entity::Draw(sf::RenderWindow & window)
 	window.draw(sprite);
 }
 
-void Entity::Update(float dt, sf::Vector2f playerPos, float playerSpeed, float PlayerRotation)
+void Entity::Update(float dt, sf::Vector2f playerPos, float playerSpeed, float PlayerRotation, sf::CircleShape cir)
 {
-	std::cout << m_state << std::endl;
+	//std::cout << m_state << std::endl;
+
+	if (sprite.getGlobalBounds().intersects(cir.getGlobalBounds()))
+	{
+		//do something
+	}
+
 	switch (m_state)
 	{
 	case State::Seek:
@@ -88,7 +97,7 @@ void Entity::decreaseSpeed()
 
 void Entity::increaseRotation()
 {
-	rotation += 5;
+	rotation += 1;
 	if (rotation >= 360)
 	{
 		rotation = 0;
@@ -97,7 +106,7 @@ void Entity::increaseRotation()
 
 void Entity::decreaseRotation()
 {
-	rotation -= 5;
+	rotation -= 1;
 	if (rotation <= 0)
 	{
 		rotation = 359;
@@ -106,6 +115,9 @@ void Entity::decreaseRotation()
 
 void Entity::Seek(sf::Vector2f pos)
 {
+
+	//currentRotation = sprite.getRotation();
+
 	float dx = pos.x - sprite.getPosition().x;
 	float dy = pos.y - sprite.getPosition().y;
 
@@ -116,8 +128,22 @@ void Entity::Seek(sf::Vector2f pos)
 	{
 		rotation = 360 - (-rotation);
 	}
+
+
+
+
+	//if ((static_cast<int>(std::round(rotation - currentRotation + 360))) % 360 < 180)
+	//{
+	//	increaseRotation();
+	//}
+	//else
+	//{
+	//	decreaseRotation();
+	//}
+
+	//std::cout << rotation << std::endl;
 	sprite.setPosition((sprite.getPosition().x + cos(rotation*(acos(-1) / 180))*speed), (sprite.getPosition().y + sin(rotation*(acos(-1) / 180))*speed));
-	sprite.setRotation(rotation);
+	sprite.setRotation(std::round(rotation));
 }
 
 void Entity::setState(int state)

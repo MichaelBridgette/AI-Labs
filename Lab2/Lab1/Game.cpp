@@ -50,8 +50,8 @@ void Game::initialize()
 
 void Game::update()
 {
-	ent.Update(dt, player.getPosition(),player.getSpeed(),player.getRotation());
-	ent2.Update(dt, player.getPosition(), player.getSpeed(), player.getRotation());
+	ent.Update(dt, player.getPosition(),player.getSpeed(),player.getRotation(), player.getCircle());
+	ent2.Update(dt, player.getPosition(), player.getSpeed(), player.getRotation(), player.getCircle());
 	player.Update(dt);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{

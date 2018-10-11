@@ -14,7 +14,7 @@ class Entity {
 public:
 	Entity(sf::Vector2f pos);
 	void Draw(sf::RenderWindow &window);
-	void Update(float dt, sf::Vector2f playerPos, float playerSpeed, float playerRotation);
+	void Update(float dt, sf::Vector2f playerPos, float playerSpeed, float playerRotation, sf::CircleShape cir);
 	void HandleBoundaries();
 
 	void increaseSpeed();
@@ -32,9 +32,16 @@ private:
 	sf::Vector2f position;
 	float speed;
 	float rotation;
+
+	float currentRotation;
+
 	sf::Vector2f velocity;
 	sf::Texture texture;
 	sf::Sprite sprite;
 
 	Player *thePlayer;
+
+
+	sf::CircleShape m_circle;
+
 };

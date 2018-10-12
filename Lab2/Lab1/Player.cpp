@@ -42,8 +42,8 @@ Player::~Player()
 void Player::Draw(sf::RenderWindow & window)
 {
 	window.draw(sprite);
-	window.draw(m_circle);
-	window.draw(m_innerCircle);
+	//window.draw(m_circle);
+	//window.draw(m_innerCircle);
 }
 
 void Player::Update(float dt)

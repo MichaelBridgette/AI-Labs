@@ -6,6 +6,8 @@ Game::Game() : window(sf::VideoMode(1920, 1080), "SFML"), player(sf::Vector2f(40
 {
 	window.setFramerateLimit(60);
 	window.setVerticalSyncEnabled(true);
+
+	ent.setState(0);
 	ent2.setState(2);
 }
 
@@ -55,29 +57,21 @@ void Game::update()
 	player.Update(dt);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		
-		//player.increaseVelocityX();
 		player.increaseRotation();
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		//player.decreaseVelocityX();
 		player.decreaseRotation();
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
-		//player.increaseVelocityY();
-		//player.SetSpeed(-0.5);
 		player.DecreaseSpeed();
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
-		//player.decreaseVelocityY();
-		//player.SetSpeed(0.5);
-		
 		player.IncreaseSpeed();
 	}
 
@@ -88,8 +82,8 @@ void Game::update()
 void Game::draw()
 {
 	window.clear(sf::Color::Black);
-	//ent.Draw(window);
-	ent2.Draw(window);
+	ent.Draw(window);
+	//ent2.Draw(window);
 	player.Draw(window);
 	window.display();
 	

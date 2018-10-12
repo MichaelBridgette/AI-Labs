@@ -3,6 +3,7 @@
 #include<SFML/Graphics.hpp>
 #include<SFML/Window.hpp>
 #include"Player.h"
+#include <stdlib.h>
 enum State {
 	Wander,
 	Seek,
@@ -25,6 +26,8 @@ public:
 
 	void Seek(sf::Vector2f pos);
 
+	void Wander(sf::Vector2f pos);
+
 	void setState(int state);
 
 private:
@@ -34,6 +37,7 @@ private:
 	float rotation;
 
 	float currentRotation;
+	float newRotation;
 
 	sf::Vector2f velocity;
 	sf::Texture texture;

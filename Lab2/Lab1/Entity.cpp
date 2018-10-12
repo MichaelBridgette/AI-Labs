@@ -12,13 +12,13 @@ Entity::Entity(sf::Vector2f pos)
 	sprite.setTexture(texture);
 	sprite.setPosition(pos);
 	sprite.setScale(0.2, 0.2);
-	sprite.setOrigin(sprite.getGlobalBounds().width / 1.4, sprite.getGlobalBounds().height / 2);
+	sprite.setOrigin(sprite.getGlobalBounds().width / 2, sprite.getGlobalBounds().height / 2);
 	sprite.setRotation(0);
 	rotation = 0;
 
 	m_state = State::Pursue;
 
-
+	srand(time(NULL));
 	
 
 }
@@ -28,18 +28,17 @@ void Entity::Draw(sf::RenderWindow & window)
 	window.draw(sprite);
 }
 
-void Entity::Update(float dt, sf::Vector2f playerPos, float playerSpeed, float PlayerRotation, sf::CircleShape cir, sf::CircleShape innerCir)
+void Entity::Update(float dt, sf::Vector2f playerPos, float playerSpeed, float playerRotation, sf::CircleShape cir, sf::CircleShape innerCir)
 {
-	//std::cout << m_state << std::endl;
-
-	
-
 	switch (m_state)
 	{
 	case State::Seek:
 		Seek(playerPos);
 		break;
 
+	case State::Wander:
+		Wander(playerPos);
+		break;
 	case State::Arrive:
 		Seek(playerPos);
 		if (sprite.getGlobalBounds().intersects(cir.getGlobalBounds()))
@@ -70,8 +69,8 @@ void Entity::Update(float dt, sf::Vector2f playerPos, float playerSpeed, float P
 
 		break;
 	case State::Pursue:
-		float x = (playerSpeed * cos(PlayerRotation *(acos(-1) / 180)));
-		float y = (playerSpeed * sin(PlayerRotation *(acos(-1) / 180)));
+		float x = (playerSpeed * cos(playerRotation *(acos(-1) / 180)));
+		float y = (playerSpeed * sin(playerRotation *(acos(-1) / 180)));
 		sf::Vector2f vel = sf::Vector2f(x,y);
 		sf::Vector2f futurePos = playerPos + (vel * 60.0f);
 		Seek(futurePos);
@@ -142,7 +141,28 @@ void Entity::decreaseRotation()
 void Entity::Seek(sf::Vector2f pos)
 {
 
-	//currentRotation = sprite.getRotation();
+	currentRotation = sprite.getRotation();
+
+
+	float dx = pos.x - sprite.getPosition().x;
+	float dy = pos.y - sprite.getPosition().y;
+
+
+	rotation = atan2(dy, dx)*(180 / acos(-1));
+
+	if (rotation < 0)
+	{
+		rotation = 360 - (-rotation);
+	}
+
+	sprite.setPosition((sprite.getPosition().x + cos(rotation*(acos(-1) / 180))*speed), (sprite.getPosition().y + sin(rotation*(acos(-1) / 180))*speed));
+	sprite.setRotation(std::round(rotation));
+}
+
+void Entity::Wander(sf::Vector2f pos)
+{
+	currentRotation = sprite.getRotation();
+
 
 	float dx = pos.x - sprite.getPosition().x;
 	float dy = pos.y - sprite.getPosition().y;
@@ -156,18 +176,12 @@ void Entity::Seek(sf::Vector2f pos)
 	}
 
 
+	float random = 0;
+	random = rand() % 20 + 0;
+	random -= 10;
+	random = random/100;
 
-
-	//if ((static_cast<int>(std::round(rotation - currentRotation + 360))) % 360 < 180)
-	//{
-	//	increaseRotation();
-	//}
-	//else
-	//{
-	//	decreaseRotation();
-	//}
-
-	//std::cout << rotation << std::endl;
+	rotation *= random;
 	sprite.setPosition((sprite.getPosition().x + cos(rotation*(acos(-1) / 180))*speed), (sprite.getPosition().y + sin(rotation*(acos(-1) / 180))*speed));
 	sprite.setRotation(std::round(rotation));
 }

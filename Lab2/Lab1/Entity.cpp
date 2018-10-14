@@ -20,16 +20,48 @@ Entity::Entity(sf::Vector2f pos)
 
 	srand(time(NULL));
 	
+	random = rand() % 90 + 0;
+	random -= 45;
 
+	if (!m_font.loadFromFile("arial.ttf"))
+	{
+		std::cout << "Font falied to load" << std::endl;
+	}
+	m_text.setFont(m_font);
+	m_text.setFillColor(sf::Color::White);
+	m_text.setCharacterSize(20);
+	m_text.setOrigin(m_text.getGlobalBounds().width / 2, m_text.getGlobalBounds().height / 2);
+	m_text.setString("State");
+
+	switch (m_state)
+	{
+	case State::Arrive:
+		m_text.setString("Arrive");
+		break;
+	case State::Pursue:
+		m_text.setString("Pursue");
+		break;
+	case State::Seek:
+		m_text.setString("Seek");
+		break;
+	case State::Wander:
+		m_text.setString("Wander");
+		break;
+	default:
+		break;
+	}
 }
 
 void Entity::Draw(sf::RenderWindow & window)
 {
 	window.draw(sprite);
+	window.draw(m_text);
 }
 
 void Entity::Update(float dt, sf::Vector2f playerPos, float playerSpeed, float playerRotation, sf::CircleShape cir, sf::CircleShape innerCir)
 {
+
+	m_text.setPosition(sprite.getPosition() + sf::Vector2f(0, -50));
 	switch (m_state)
 	{
 	case State::Seek:
@@ -69,11 +101,7 @@ void Entity::Update(float dt, sf::Vector2f playerPos, float playerSpeed, float p
 
 		break;
 	case State::Pursue:
-		float x = (playerSpeed * cos(playerRotation *(acos(-1) / 180)));
-		float y = (playerSpeed * sin(playerRotation *(acos(-1) / 180)));
-		sf::Vector2f vel = sf::Vector2f(x,y);
-		sf::Vector2f futurePos = playerPos + (vel * 60.0f);
-		Seek(futurePos);
+		Pursue(playerPos,playerSpeed,playerRotation);
 		break;
 	}
 	
@@ -176,17 +204,42 @@ void Entity::Wander(sf::Vector2f pos)
 	}
 
 
-	float random = 0;
-	random = rand() % 20 + 0;
-	random -= 10;
-	random = random/100;
 
-	rotation *= random;
+	//random = random/100;
+
+	rotation += random;
+	std::cout << rotation << std::endl;
 	sprite.setPosition((sprite.getPosition().x + cos(rotation*(acos(-1) / 180))*speed), (sprite.getPosition().y + sin(rotation*(acos(-1) / 180))*speed));
 	sprite.setRotation(std::round(rotation));
+}
+
+void Entity::Pursue(sf::Vector2f pos, float theSpeed, float theRotation)
+{
+	float x = (theSpeed * cos(theRotation *(acos(-1) / 180)));
+	float y = (theSpeed * sin(theRotation *(acos(-1) / 180)));
+	sf::Vector2f vel = sf::Vector2f(x, y);
+	sf::Vector2f futurePos = pos + (vel * 60.0f);
+	Seek(futurePos);
 }
 
 void Entity::setState(int state)
 {
 	m_state = static_cast<State>(state);
+	switch (m_state)
+	{
+	case State::Arrive:
+		m_text.setString("Arrive");
+		break;
+	case State::Pursue:
+		m_text.setString("Pursue");
+		break;
+	case State::Seek:
+		m_text.setString("Seek");
+		break;
+	case State::Wander:
+		m_text.setString("Wander");
+		break;
+	default:
+		break;
+	}
 }

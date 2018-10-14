@@ -28,6 +28,8 @@ public:
 
 	void Wander(sf::Vector2f pos);
 
+	void Pursue(sf::Vector2f pos, float speed, float rotation);
+
 	void setState(int state);
 
 private:
@@ -48,4 +50,10 @@ private:
 
 	sf::CircleShape m_circle;
 
+
+	float random = 0;
+
+
+	sf::Text m_text;
+	sf::Font m_font;
 };
